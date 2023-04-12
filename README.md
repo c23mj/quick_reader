@@ -1,3 +1,3 @@
-# bionic_reader
+# Bionic Reader
 
-An attempt to create a chrome extension for bionic reading, where parts of words are strategically bolded to make text easier to process.
+An attempt to make a chrome extension that strategically bolds text to make it quicker to read and process!
