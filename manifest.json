@@ -1,0 +1,17 @@
+{
+  "name": "Bionic Reader",
+  "description": "Enables bionic reading for browser webpages.",
+  "version": "0.1.0",
+  "manifest_version": 3,
+  "icons": {
+    "48": "/assets/icons/reading_small.png",
+    "128": "/assets/icons/reading.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "/assets/icons/reading_small.png",
+      "128": "/assets/icons/reading.png"
+    }
+  }
+}
