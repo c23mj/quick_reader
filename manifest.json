@@ -13,5 +13,11 @@
       "48": "/assets/icons/reading_small.png",
       "128": "/assets/icons/reading.png"
     }
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content_scripts.js"]
+    }
+  ]
 }
