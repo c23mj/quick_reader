@@ -1,25 +1,28 @@
 const activate = document.getElementById("br-activate");
 const reset = document.getElementById("br-reset");
 
-getCurrentTab = async () => {
-  let queryOptions = { active: true };
+async function getCurrentTab() {
+  let queryOptions = { active: true, lastFocusedWindow: true };
   let [tab] = await chrome.tabs.query(queryOptions);
   return tab;
-};
+}
 
-injectContentScript = (tab) => {
+injectContentScript = (tab, script) => {
   const { id, url } = tab;
   chrome.scripting.executeScript({
     target: { tabId: id, allFrames: true },
-    files: ["/assets/scripts/content.js"],
+    files: [script],
   });
 };
 
 activate.addEventListener("click", () => {
-  activate.innerText = "hello!";
   getCurrentTab().then((tab) => {
-    injectContentScript(tab);
+    injectContentScript(tab, "assets/scripts/content.js");
   });
 });
 
-// reset.addEventListener("click", () => {});
+reset.addEventListener("click", () => {
+  getCurrentTab().then((tab) => {
+    injectContentScript(tab, "assets/scripts/reset.js");
+  });
+});
