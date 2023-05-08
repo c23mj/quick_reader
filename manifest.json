@@ -1,20 +1,19 @@
 {
-  "name": "Bionic Reader",
-  "description": "Enables bionic reading for browser webpages.",
-  "version": "0.1.0",
+  "name": "Quick Reader",
+  "description": "A simple chrome extension to help you read more efficiently!",
+  "author": "Michael Jiang",
+  "version": "0.0.1",
   "manifest_version": 3,
+  "icons": {
+    "16": "assets/icons/qr16.png",
+    "32": "assets/icons/qr32.png",
+    "48": "assets/icons/qr48.png",
+    "128": "assets/icons/qr128.png"
+  },
   "permissions": ["webRequest", "scripting", "activeTab"],
   "host_permissions": ["<all_urls>"],
-  "icons": {
-    "48": "/assets/icons/reading_small.png",
-    "128": "/assets/icons/reading.png"
-  },
   "action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "48": "/assets/icons/reading_small.png",
-      "128": "/assets/icons/reading.png"
-    }
+    "default_popup": "popup.html"
   },
   "background": {
     "service_worker": "background.js"
