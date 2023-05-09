@@ -10,12 +10,13 @@
     "48": "assets/icons/qr48.png",
     "128": "assets/icons/qr128.png"
   },
-  "permissions": ["webRequest", "scripting", "activeTab"],
+  "permissions": ["storage", "activeTab", "scripting", "tabs"],
   "host_permissions": ["<all_urls>"],
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "assets/popup/popup.html"
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "assets/background.js",
+    "type": "module"
   }
 }
