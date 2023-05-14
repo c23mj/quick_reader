@@ -1,15 +1,23 @@
-// import embolden from utils.js
+import { embolden } from "./utils.js"
+
+chrome.runtime.onInstalled.addListener(() => {
+    chrome.storage.sync.set({
+      autoApply: false
+    });
+  });
+
+chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
+    if (changeInfo.status == "complete"){
+        chrome.storage.sync.get(["autoApply"], async(res) =>{
+            if(res.autoApply){
+                chrome.scripting.executeScript({
+                  target: { tabId: tabId },
+                  function: embolden
+                });
+            }
+            
+        })
+    }
+})
 
 
-// chrome.commands.onCommand.addListener(async (command) => {
-//     if(command === "toggle-qr"){
-//         let queryOptions = { active: true, lastFocusedWindow: true };
-//         let [tab] = await chrome.tabs.query(queryOptions);
-//         const { id, url } = tab;
-
-//         chrome.scripting.executeScript({
-//           target: { tabId: id, allFrames: true },
-//           function: embolden
-//         });
-//     }
-// });

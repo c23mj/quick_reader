@@ -4,7 +4,7 @@ export function embolden() {
     var style = document.createElement("style");
     style.id = "qr-style-id";
     style.innerHTML = 
-     ".qr-highlight {font-weight: bold}  \
+     ".qr-highlight {font-weight: 600}  \
       .qr-rest {opacity: 0.9}";
     document.getElementsByTagName("head")[0].appendChild(style);
   }
@@ -31,7 +31,13 @@ export function embolden() {
   function emboldenText(text){
       var changed = "";
       for (var word of text.split(" ")) {
-        changed += emboldenWord(word) + " ";
+        if(word.indexOf('-') != -1){
+          changed += emboldenWord(word.substring(0, word.indexOf('-'))) + "-" 
+          + emboldenWord(word.substring(word.indexOf('-') + 1)) + " ";
+        } else {
+          changed += emboldenWord(word) + " ";
+        }
+       
       }
       return changed;
 
@@ -44,7 +50,6 @@ export function embolden() {
         .replace(/=/g, "&#x3D;")
         .replace(/\"/g, "&quot;")
         .replace(/\//g, "&#x2F;")
-        .replace(/'/g, "&#39;")
         .replace(/`/g, "&#x60;");
 
   }
@@ -77,6 +82,9 @@ export function embolden() {
       emboldenNode(document.body);
     }
 
+    chrome.storage.sync.get(["autoApply"]).then((result) => {
+      console.log(result.autoApply);
+    });
 }
  
 

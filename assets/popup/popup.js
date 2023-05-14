@@ -1,8 +1,8 @@
 import { embolden } from "../utils.js";
-let toggle = document.getElementById("qr-toggle");
-let auto = document.getElementById("qr-auto");
+let toggleButton = document.getElementById("qr-toggle");
+let autoButton = document.getElementById("qr-auto");
 
-toggle.addEventListener("click", async () => {
+toggleButton.addEventListener("click", async () => {
     let queryOptions = { active: true, lastFocusedWindow: true };
     let [tab] = await chrome.tabs.query(queryOptions);
     chrome.scripting.executeScript({
@@ -11,6 +11,22 @@ toggle.addEventListener("click", async () => {
     });
 });
 
-auto.addEventListener("click", () => {
-  auto.innerText = "clicked!"
+
+function updateAutoText(autoApply){
+  if(autoApply){
+    autoButton.innerText = "Disable Auto Apply"
+  } else{
+    autoButton.innerText = "Enable Auto Apply"
+  }
+
+}
+autoButton.addEventListener("click", () => {
+  chrome.storage.sync.get(["autoApply"], (data) => {
+    updateAutoText(!data.autoApply);
+    chrome.storage.sync.set({ autoApply: !data.autoApply });
+  });
+});
+
+chrome.storage.sync.get(["autoApply"], (data) =>{
+  updateAutoText(data.autoApply);
 });
