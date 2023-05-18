@@ -1,6 +1,6 @@
 {
   "name": "Quick Reader",
-  "description": "A simple chrome extension to help you read more efficiently!",
+  "description": "A simple chrome extension to enable bionic reading, which helps you read more efficiently.",
   "author": "Michael Jiang",
   "version": "0.0.1",
   "manifest_version": 3,
