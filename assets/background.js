@@ -33,7 +33,6 @@ chrome.commands.onCommand.addListener(async (command) => {
   if (command === "toggle-auto"){
     chrome.storage.sync.get(["autoApply"], (data) => {
       chrome.storage.sync.set({ autoApply: !data.autoApply });
-      console.log(data.autoApply);
     });
   }
 
