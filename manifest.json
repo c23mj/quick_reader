@@ -18,5 +18,21 @@
   "background": {
     "service_worker": "assets/background.js",
     "type": "module"
+  },
+  "commands":{
+    "toggle-qr":{
+      "suggested_key": {
+        "default": "Ctrl+U",
+        "mac": "Command+U"
+      },
+      "description": "Toggle reading mode on active tab."
+    },
+    "toggle-auto":{
+      "suggested_key": {
+        "default": "Ctrl+I",
+        "mac": "Command+I"
+      },
+      "description":"Toggle auto apply."
+    }
   }
 }

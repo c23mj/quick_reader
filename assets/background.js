@@ -18,4 +18,23 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
             
         })
     }
-})
+});
+
+
+chrome.commands.onCommand.addListener(async (command) => {
+  if (command === "toggle-qr"){
+    let [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      function: embolden
+    });
+
+  }
+  if (command === "toggle-auto"){
+    chrome.storage.sync.get(["autoApply"], (data) => {
+      chrome.storage.sync.set({ autoApply: !data.autoApply });
+      console.log(data.autoApply);
+    });
+  }
+
+});

@@ -12,23 +12,36 @@ toggleButton.addEventListener("click", async () => {
 });
 
 
-function updateAutoText(autoApply){
+
+function updateAuto(autoApply){
   if(autoApply){
-    autoButton.innerText = "Disable Auto Apply";
+    autoButton.innerHTML = "<span> Disable Auto Apply <span></span><span style = 'font-size:8px'> <br> &#x28;Cmd/Ctrl + I&#x29;</span>";
     autoButton.className = "auto-enabled";
   } else{
-    autoButton.innerText = "Enable Auto Apply"
+    autoButton.innerHTML = "<span> Enable Auto Apply <span></span><span style = 'font-size:8px'> <br> &#x28;Cmd/Ctrl + I&#x29;</span>";
     autoButton.className = "auto-disabled";
   }
 
 }
 autoButton.addEventListener("click", () => {
   chrome.storage.sync.get(["autoApply"], (data) => {
-    updateAutoText(!data.autoApply);
+    updateAuto(!data.autoApply);
     chrome.storage.sync.set({ autoApply: !data.autoApply });
   });
 });
 
 chrome.storage.sync.get(["autoApply"], (data) =>{
-  updateAutoText(data.autoApply);
+  updateAuto(data.autoApply);
+});
+
+
+
+chrome.commands.onCommand.addListener(async (command) => {
+  if (command === "toggle-auto"){
+    chrome.storage.sync.get(["autoApply"], (data) =>{
+      updateAuto(!data.autoApply);
+    });
+
+  }
+
 });
