@@ -5,10 +5,10 @@
   "version": "0.0.1",
   "manifest_version": 3,
   "icons": {
-    "16": "assets/icons/qr16.png",
-    "32": "assets/icons/qr32.png",
-    "48": "assets/icons/qr48.png",
-    "128": "assets/icons/qr128.png"
+    "16": "assets/icons/fr16.png",
+    "32": "assets/icons/fr32.png",
+    "48": "assets/icons/fr48.png",
+    "128": "assets/icons/fr128.png"
   },
   "permissions": ["storage", "activeTab", "scripting", "tabs"],
   "host_permissions": ["<all_urls>"],

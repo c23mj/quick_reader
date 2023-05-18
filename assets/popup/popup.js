@@ -14,9 +14,11 @@ toggleButton.addEventListener("click", async () => {
 
 function updateAutoText(autoApply){
   if(autoApply){
-    autoButton.innerText = "Disable Auto Apply"
+    autoButton.innerText = "Disable Auto Apply";
+    autoButton.className = "auto-enabled";
   } else{
     autoButton.innerText = "Enable Auto Apply"
+    autoButton.className = "auto-disabled";
   }
 
 }

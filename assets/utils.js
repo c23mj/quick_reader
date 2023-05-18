@@ -4,7 +4,7 @@ export function embolden() {
     var style = document.createElement("style");
     style.id = "qr-style-id";
     style.innerHTML = 
-     ".qr-highlight {font-weight: 600}  \
+     ".qr-highlight {font-weight: 650}  \
       .qr-rest {opacity: 0.9}";
     document.getElementsByTagName("head")[0].appendChild(style);
   }
@@ -42,17 +42,6 @@ export function embolden() {
       return changed;
 
   }
-  function sanitize(str){
-    return str
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/=/g, "&#x3D;")
-        .replace(/\"/g, "&quot;")
-        .replace(/\//g, "&#x2F;")
-        .replace(/`/g, "&#x60;");
-
-  }
   function emboldenNode(node){
     if (
       node.tagName === "SCRIPT" ||
@@ -63,7 +52,7 @@ export function embolden() {
     if (node.childNodes == undefined || node.childNodes.length == 0) {
       if (node.textContent != undefined && node.tagName == undefined) {
         var newNode = document.createElement("qr");
-        newNode.innerHTML = emboldenText(sanitize(node.textContent));
+        newNode.innerHTML = emboldenText(node.textContent);
         if (node.textContent.length > 20) {
           node.replaceWith(newNode);
         }
@@ -82,17 +71,5 @@ export function embolden() {
       emboldenNode(document.body);
     }
 
-    chrome.storage.sync.get(["autoApply"]).then((result) => {
-      console.log(result.autoApply);
-    });
 }
  
-
-// export function patternsInclude(patterns, url) {
-//   for (var pattern of patterns) {
-//     if (url.match(pattern)) {
-//       return true;
-//     }
-//   }
-//   return false;
-// }
