@@ -10,8 +10,8 @@
     "48": "assets/icons/fr48.png",
     "128": "assets/icons/fr128.png"
   },
-  "permissions": ["storage", "activeTab", "scripting", "tabs"],
-  "host_permissions": ["http://*/", "https://*/"],
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": ["<all_urls>"],
   "action": {
     "default_popup": "assets/popup/popup.html"
   },
